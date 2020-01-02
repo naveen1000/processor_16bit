@@ -1,0 +1,1 @@
+iverilog cu.v alu.v registers.v instr_reg.v memory.v

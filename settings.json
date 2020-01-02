@@ -1,0 +1,22 @@
+{
+    "C_Cpp.updateChannel": "Insiders",
+    "code-runner.runInTerminal": true,
+    "terminal.external.windowsExec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "terminal.integrated.cursorStyle": "line",
+    "files.autoSave": "afterDelay",
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.saveFileBeforeRun": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    
+    "arduino.path": "C:\\Program Files (x86)\\Arduino",
+     "arduino.additionalUrls": "", 
+     "arduino.logLevel": "info",
+      "arduino.enableUSBDetection": true, 
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "python.jediEnabled": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "workbench.startupEditor": "welcomePage",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+
+}

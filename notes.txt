@@ -1,0 +1,18 @@
+week7-- about memory starting
+
+from loki pc.
+            4'b1010: //LDM
+                begin
+                maddr=ir_data[7:0]; mrd=1;
+                #5 addr=ir_data[9:8]; wr=1; data_in=m_data;
+                #5 wr=0; 
+                end
+
+            4'b1010: //STM
+                begin
+                addr=ir_data[9:8]; rd=1;
+                #5 A=data_out;
+                $display("stm executed");
+                #5 maddr=ir_data[7:0]; mwr=1; mwr_data=data_out;  
+                #5 mwr=0;
+                end
