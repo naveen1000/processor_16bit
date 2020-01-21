@@ -15,6 +15,6 @@ always @(*)
 begin
     if(rd)
         data_out=r[addr];
-        $display("rd=r[%d]=%b=%d",addr,data_out,data_out);
+        $display("rd=r[%d]=%d",addr,data_out);
 end
 endmodule // register ram module

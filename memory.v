@@ -1,7 +1,7 @@
 module memory(
     input[7:0]addr,
     input rd,wr,
-    input [7:0]mwr_data,
+    input [15:0]mwr_data,
     output reg [15:0]data);
     
 reg [15:0] mem[0:256];

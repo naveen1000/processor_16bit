@@ -2,16 +2,16 @@ module tb_main;
 integer i;
 //alu_tb
 reg [2:0]opcode;
-reg [7:0]A,B;
-wire [7:0]alu_out;
+reg [15:0]A,B;
+wire [15:0]alu_out;
 wire cy,zero;
 alu DUT(opcode,A,B,alu_out,cy,zero);
 //reg_tb
 reg [2:0]addr;
 reg rd;
 reg wr;
-reg [7:0]data_in;
-wire [7:0]data_out;
+reg [15:0]data_in;
+wire [15:0]data_out;
 registers RegUT(addr,rd,wr,data_in,data_out);
 //IR_tb
 reg [7:0]pc;
@@ -20,7 +20,8 @@ wire [15:0]ir_data;
 inst_reg IUT(pc,en,ir_data);
 
 //mem_tb
-reg [7:0]maddr,mwr_data;
+reg [7:0]maddr;
+reg [15:0]mwr_data;
 reg mrd,mwr;
 wire [15:0]m_data;
 memory MemUT(maddr,mrd,mwr,mwr_data,m_data);
@@ -29,7 +30,7 @@ memory MemUT(maddr,mrd,mwr,mwr_data,m_data);
 
 initial
 begin
-    $monitor ($time," A=%d, B=%d,alu_out=%d,sel=%d,ir_data=%b",A,B,alu_out,addr,ir_data);
+    $monitor ($time,"A=%d,B=%d,alu_out=%d,sel=%d,ir_data=%b",A,B,alu_out,addr,ir_data);
         for (i=0; i<256; i=i+1)
         begin
             #5 pc=i;en=1;$display("%d",i);#5 
@@ -39,7 +40,7 @@ begin
         case(ir_data[15:11])
             5'b01000: //load 
                 begin
-                    addr=ir_data[9:8]; wr=1; data_in=ir_data[7:0];
+                    addr=ir_data[9:8]; wr=1; data_in={8'b0,ir_data[7:0]};
                     #5 wr=0;
                 end
             5'b00000: //add
@@ -61,8 +62,8 @@ begin
                 #5 A=data_out;
                 addr=ir_data[1:0]; rd=1;
                 #5 B=data_out;
-                #5 //$display("opcode=%b",ir_data[14:12]);
-                #5 opcode = ir_data[14:12];
+                #5 $display("opcode=%b",ir_data[14:12]);
+                #5 opcode = ir_data[13:11];
                 $display("sub executed");
                 #5 addr=ir_data[9:8]; wr=1; data_in=alu_out;
                 #5 wr=0; 

@@ -18,8 +18,5 @@ case(opcode)
 default: begin{cy,alu_out} = 0;zero=(alu_out==16'b0);end 
 endcase
 
-
-//$display($time," ALU: %b",ALUOut);
-//$display($time, " Zero: %b", (ALUOut==0));
 end
 endmodule // alu
